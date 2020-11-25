@@ -1,5 +1,13 @@
 {% extends "base.html.twig" %}
 
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
 {% block body %}
-    <h1>Bienvenue sur Wild Series</h1>
+    <h1>Bienvenue sur Wild Series</h1><br>
+    <img src="{{ asset('build/logo.png') }}" alt="logo"/>
+{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
 {% endblock %}

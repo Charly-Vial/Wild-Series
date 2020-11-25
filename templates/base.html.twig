@@ -4,8 +4,10 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
+        <link rel="icon" href="{{ asset('build/favicon.png') }}">
     </head>
     <body>
+        {% block header %}{% include '_navbar.html.twig' %}{% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

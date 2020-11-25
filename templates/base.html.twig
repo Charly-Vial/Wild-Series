@@ -3,8 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="/build/app.css">
+        <script src="/build/app.js"></script>
         <link rel="icon" href="{{ asset('build/favicon.png') }}">
+        {% block stylesheets %}{% endblock %}
+
     </head>
     <body>
         {% block header %}{% include '_navbar.html.twig' %}{% endblock %}

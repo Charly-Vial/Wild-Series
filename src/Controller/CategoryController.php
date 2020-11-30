@@ -41,7 +41,7 @@ class CategoryController extends AbstractController
     {
         $category = $this->getDoctrine()
             ->getRepository(Category::class)
-            ->findBy(['name' => $categoryName,
+            ->findBy(['name' => $categoryName
                 ]);
 
         if (!$category) {
@@ -51,7 +51,7 @@ class CategoryController extends AbstractController
         }
         $programsByCategory = $this->getDoctrine()
             ->getRepository(Program::class)
-            ->findBy(['category' => $category], ['id' => 'DESC'], 3);
+            ->findBy(['category' => $category], ['id' => 'desc'], 3);
         return $this->render('category/show.html.twig', [
             'programs' => $programsByCategory
         ]);

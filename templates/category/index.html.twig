@@ -6,7 +6,7 @@
     <h1>Toutes les catégories de la table catégorie : </h1>
     {% for category in categories %}
         <div>
-            <h2>{{ loop.index }} - Catégorie : <a href="{{ path("category_show", { categoryName: category.name }) }}">{{ category.name }}</a></h2>
+            <h2>{{ category.id }} - Catégorie : <a href="{{ path("category_show", { categoryName: category.name }) }}">{{ category.name }}</a></h2>
         </div>
 
     {% else %}

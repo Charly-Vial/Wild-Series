@@ -93,7 +93,6 @@ class ProgramController extends AbstractController
             'season' => $season,
             'episode' => $episode
         ]);
-
     }
 
 }

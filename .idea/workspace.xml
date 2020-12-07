@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="fbf79e3d-98ea-41c2-88a2-fc338ffdc5d9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CategoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ProgramController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProgramController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -197,7 +196,9 @@
       <workItem from="1607186419605" duration="220000" />
       <workItem from="1607186691195" duration="7272000" />
       <workItem from="1607242271269" duration="15703000" />
-      <workItem from="1607327233316" duration="10022000" />
+      <workItem from="1607327233316" duration="10681000" />
+      <workItem from="1607366188313" duration="2064000" />
+      <workItem from="1607368282768" duration="3344000" />
     </task>
     <servers />
   </component>
@@ -215,5 +216,16 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/Controller/CategoryController.php</url>
+          <line>59</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

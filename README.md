@@ -1,2 +1,2 @@
-Quête 9 Symfony wild-series 
-Record: https://www.loom.com/share/c6ab2cff04eb42ff831d0599b106cc0f
+Quête 12 Symfony wild-series CRUD
+Record: https://www.loom.com/share/823d349fc14b4f849f7b43e4cf41c070

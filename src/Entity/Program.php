@@ -24,16 +24,16 @@ class Program
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="merci de compléter ce champ vide")
+     * @Assert\NotBlank(message="merci de compléter le champ titre")
      * @Assert\Length(max="255", maxMessage="La catégorie saisie {{ value }} est trop longue, elle ne devrait pas dépasser {{ limit }} caractères")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\NotBlank(message="merci de compléter ce champ vide")
+     * @Assert\NotBlank(message="merci de compléter le champ synopsis")
      * @Assert\Regex(
-     *     pattern="/plus belle la vie/",
+     *     pattern="/plus belle la vie/i",
      *     match=false,
      *     message="On parle de vraies séries ici"
      * )
@@ -42,7 +42,7 @@ class Program
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank(message="merci de compléter ce champ vide")
+     * @Assert\NotBlank(message="merci de compléter le champ image")
      */
     private $poster;
 

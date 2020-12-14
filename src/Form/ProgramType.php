@@ -9,6 +9,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use App\Entity\Actor;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ProgramType extends AbstractType
 {
@@ -18,7 +20,14 @@ class ProgramType extends AbstractType
             ->add('title', TextType::class)
             ->add('summary', TextType::class)
             ->add('poster', TextType::class)
-            ->add('category', null, ['choice_label' => 'name']);
+            ->add('category', null, ['choice_label' => 'name'])
+            ->add('actors', EntityType::class, [
+                'class' => Actor::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+                'by_reference' =>false,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

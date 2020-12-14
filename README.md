@@ -1,2 +1,2 @@
-Quête 9 Symfony wild-series 
-Record: https://www.loom.com/share/c6ab2cff04eb42ff831d0599b106cc0f
+Quête 15 Symfony wild-series EntityType
+https://www.loom.com/share/77b694f183fa4470a056957ce6d45c75

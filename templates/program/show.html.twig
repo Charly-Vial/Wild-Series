@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Série #{{ program.id }}{% endblock %}
+{% block title %}{{ program.slug }}{% endblock %}
 
 {% block body %}
 
@@ -11,7 +11,7 @@
             <p>Catégorie : {{ program.category.name }}</p>
             <p>Saisons disponibles :
                 {% for season in season %}
-                    <a href="{{ path('program_season_show', {programId : program.id, seasonId : season.id}) }}"> {{ season.number }}</a>
+                    <a href="{{ path('program_season_show', {program : program.slug, season : season.id}) }}"> {{ season.number }}</a>
                 {% endfor %}
             </p>
             <strong>Acteurs :</strong>

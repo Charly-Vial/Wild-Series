@@ -184,14 +184,15 @@ class Program
 
     public function getSlug(): ?string
     {
-        return $this->poster;
+        return $this->slug;
     }
 
     public function setSlug(string $slug): self
     {
-        $this->poster = $slug;
+        $this->slug = $slug;
 
         return $this;
     }
+
 
 }

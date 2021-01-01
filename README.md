@@ -1,2 +1,2 @@
-Quête 9 Symfony wild-series 
-Record: https://www.loom.com/share/c6ab2cff04eb42ff831d0599b106cc0f
+Quête 17 Symfony wild-series Services Slug
+Record: https://www.loom.com/share/29b9d566e75d4895bbd96641c5564798

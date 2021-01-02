@@ -40,6 +40,40 @@ class ProgramController extends AbstractController
     }
 
     /**
+     * The controller for the category add form
+     *
+     * @Route("/new", name="new")
+     * @param Request $request
+     * @param Slugify $slugify
+     * @param MailerInterface $mailer
+     * @return Response
+     */
+    public function new(Request $request, Slugify $slugify, MailerInterface $mailer) : Response
+    {
+        $program = new Program();
+        $form = $this->createForm(ProgramType::class, $program);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugify->generate($program->getTitle());
+            $program->setSlug($slug);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($program);
+            $entityManager->flush();
+
+            $email = (new Email())
+                ->from($this->getParameter('mailer_from'))
+                ->to('5e0b65bf09-46c390@inbox.mailtrap.io')
+                ->subject('Une nouvelle série vient d\'être publiée !')
+                ->html($this->renderView('Program/newProgramEmail.html.twig', ['program' => $program]));
+            $mailer->send($email);
+
+            return $this->redirectToRoute('program_index');
+        }
+        return $this->render('program/new.html.twig', ["form" => $form->createView()]);
+    }
+
+    /**
      * Getting a program by id
      * @Route("/{programSlug}", methods={"GET"}, name="show")
      * @ParamConverter ("program", class="App\Entity\Program", options={"mapping": {"programSlug": "slug"}})
@@ -101,38 +135,6 @@ class ProgramController extends AbstractController
         ]);
     }
 
-    /**
-     * The controller for the category add form
-     *
-     * @Route("/new", name="new")
-     * @param Request $request
-     * @param Slugify $slugify
-     * @param MailerInterface $mailer
-     * @return Response
-     */
-    public function new(Request $request, Slugify $slugify, MailerInterface $mailer) : Response
-    {
-        $program = new Program();
-        $form = $this->createForm(ProgramType::class, $program);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $slug = $slugify->generate($program->getTitle());
-            $program->setSlug($slug);
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($program);
-            $entityManager->flush();
-
-            $email = (new Email())
-                ->from($this->getParameter('mailer_from'))
-                ->to('5e0b65bf09-46c390@inbox.mailtrap.io')
-                ->subject('Une nouvelle série vient d\'être publiée !')
-                ->html($this->renderView('Program/newProgramEmail.html.twig', ['program' => $program]));
-            $mailer->send($email);
-
-            return $this->redirectToRoute('program_index');
-        }
-        return $this->render('program/new.html.twig', ["form" => $form->createView()]);
-    }
 
 }

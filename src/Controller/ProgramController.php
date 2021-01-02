@@ -12,6 +12,8 @@ use App\Entity\Season;
 use APP\Entity\Episode;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 
 /**
@@ -105,9 +107,10 @@ class ProgramController extends AbstractController
      * @Route("/new", name="new")
      * @param Request $request
      * @param Slugify $slugify
+     * @param MailerInterface $mailer
      * @return Response
      */
-    public function new(Request $request, Slugify $slugify) : Response
+    public function new(Request $request, Slugify $slugify, MailerInterface $mailer) : Response
     {
         $program = new Program();
         $form = $this->createForm(ProgramType::class, $program);
@@ -119,6 +122,14 @@ class ProgramController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($program);
             $entityManager->flush();
+
+            $email = (new Email())
+                ->from($this->getParameter('mailer_from'))
+                ->to('5e0b65bf09-46c390@inbox.mailtrap.io')
+                ->subject('Une nouvelle série vient d\'être publiée !')
+                ->html($this->renderView('Program/newProgramEmail.html.twig', ['program' => $program]));
+            $mailer->send($email);
+
             return $this->redirectToRoute('program_index');
         }
         return $this->render('program/new.html.twig', ["form" => $form->createView()]);

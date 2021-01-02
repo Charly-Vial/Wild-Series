@@ -4,6 +4,7 @@
 
 {% block body %}
     <h1>New episode {{ episode.title|upper }} created</h1>
-    <p>Hello, the new episode {{ episode.title }} has been created on Wild Series</p>
-    <p>Summary : {{episode.synopsis }}
+    <p>Hello, the new episode {{ episode.title|capitalize }} of the show {{ episode.season.program.title }} has been created on Wild Series</p>
+    <p>Summary : {{episode.synopsis }}</p><br>
+    <a href="localhost:8000{{ path('episode_show', {'episodeSlug': episode.slug}) }}">Let's see the new episode !</a>
 {% endblock %}

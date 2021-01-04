@@ -34,7 +34,7 @@ class Comment
     private $author;
 
     /**
-     * @ORM\ManyToOne(targetEntity=episode::class, inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity=Episode::class, inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
      */
     private $episode;
@@ -80,12 +80,12 @@ class Comment
         return $this;
     }
 
-    public function getEpisode(): ?episode
+    public function getEpisode(): ?Episode
     {
         return $this->episode;
     }
 
-    public function setEpisode(?episode $episode): self
+    public function setEpisode(?Episode $episode): self
     {
         $this->episode = $episode;
 

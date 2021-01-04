@@ -6,4 +6,21 @@
     <a href="{{ path("program_season_show", {"program" : program.slug, "season" : season.id}) }}"><h2>Season {{ season.number }} ({{ season.year }})</h2></a>
     <h3>Episode {{ episode.number}} "{{ episode.title }}"</h3>
     <p>{{ episode.synopsis }}</p>
+
+    {% for comment in episode.comments %}
+        <div>
+            <b>Author: </b>{{ comment.author.username }}<br>
+            <b>Rating: </b>{{ comment.rate }}<br>
+            <b>Comment: </b>{{ comment.comment }}<br>
+        </div><br>
+    {% endfor %}
+    <br><br>
+    {% if app.user %}
+        <h5>Ajoutez une note et un commentaire pour cet épisode</h5><br>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn">{{ button_label|default('Save') }}</button>
+        {{ form_end(form) }}
+    {% endif %}
+
 {% endblock %}

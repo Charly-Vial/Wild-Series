@@ -12,10 +12,12 @@ use App\Entity\Program;
 use App\Entity\Season;
 use APP\Entity\Episode;
 use App\Entity\Comment;
+use App\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 
 /**
@@ -157,6 +159,36 @@ class ProgramController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/{programSlug}/edit", name="edit", methods={"GET","POST"})
+     * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"programSlug": "slug"}})
+     * @param Program $program
+     * @return Response
+     */
+    public function edit(Request $request, Program $program, Slugify $slugify): Response
+    {
+        // Is the logged in user the owner of the program?
+        if (!($this->getUser() == $program->getOwner())) {
+//            // 403 Access Denied exception if user is not the owner
+            throw new AccessDeniedException('You need to be the owner of the program to edit it.');
+        }
+
+        $form = $this->createForm(ProgramType::class, $program);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugify->generate($program->getTitle());
+            $program->setSlug($slug);
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('program_index');
+        }
+
+        return $this->render('program/new.html.twig', [
+            'program' => $program,
+            'form' => $form->createView(),
+        ]);
+    }
 
 
 }

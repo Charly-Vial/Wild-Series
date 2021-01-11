@@ -11,9 +11,10 @@
             <a class="nav-item nav-link" href="{{ path('season_index') }}">Seasons</a>
             <a class="nav-item nav-link" href="{{ path('episode_index') }}">Episodes</a>
             <a class="nav-item nav-link" href="{{ path('actor_index') }}">Actors</a>
+            <a class="nav-item nav-link" href="{{ path('comment_index') }}">Comments</a>
             {% if app.user %}
                 <a class="nav-item nav-link" href="{{ path('app_logout') }}"> Se déconnecter</a>
-                {{ app.user.username }}
+                Bonjour {{ app.user.username }}
             {% else %}
                 <a class="nav-item nav-link" href="{{ path('app_login') }}"> Se connecter</a>
             {% endif %}

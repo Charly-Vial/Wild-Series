@@ -7,7 +7,7 @@
 
     {{ include('comment/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('comment_index') }}">back to list</a>
+    <a href="{{ path('comment_index') }}">back to list</a><br>
 
-    {{ include('comment/_delete_form.html.twig') }}
+    {{ include('comment/_delete_form.html.twig', {'button_label': 'Delete'}) }}
 {% endblock %}

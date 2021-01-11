@@ -21,7 +21,7 @@ class UserFixtures extends Fixture
 
         // Création d’un utilisateur de type “contributeur” (= auteur)
         $contributor = new User();
-        $contributor->setUsername('contributor');
+        $contributor->setUsername('Toto');
         $contributor->setBio('la biographie du gars qui met des commentaires');
         $contributor->setEmail('contributor@monsite.com');
         $contributor->setRoles(['ROLE_CONTRIBUTOR']);
@@ -30,11 +30,12 @@ class UserFixtures extends Fixture
             'contributorpassword'
         ));
         $manager->persist($contributor);
+        $this->addReference('Toto', $contributor);
 
         // Création d’un utilisateur de type “administrateur”
         $admin = new User();
         $admin->setEmail('admin@monsite.com');
-        $admin->setUsername('administrator');
+        $admin->setUsername('Boss');
         $admin->setBio('la biographie de l\'administrateur');
         $admin->setRoles(['ROLE_ADMIN']);
         $admin->setPassword($this->passwordEncoder->encodePassword(
@@ -42,8 +43,22 @@ class UserFixtures extends Fixture
             'adminpassword'
         ));
         $manager->persist($admin);
+        $this->addReference('admin', $admin);
 
-        // Sauvegarde des 2 nouveaux utilisateurs :
+        // Création d’un second utilisateur de type “contributeur” (= auteur)
+        $contributor2 = new User();
+        $contributor2->setUsername('Tata');
+        $contributor2->setBio('la biographie du gars qui met des commentaires');
+        $contributor2->setEmail('contributor2@monsite.com');
+        $contributor2->setRoles(['ROLE_CONTRIBUTOR']);
+        $contributor2->setPassword($this->passwordEncoder->encodePassword(
+            $contributor2,
+            'contributor2password'
+        ));
+        $manager->persist($contributor2);
+        $this->addReference('Tata', $contributor2);
+
+        // Sauvegarde des 3 nouveaux utilisateurs :
         $manager->flush();
     }
 

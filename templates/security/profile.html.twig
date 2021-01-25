@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <div>
+        <h1>My profile</h1>
+        <p>
+        <p>Username: {{ app.user.username }}</p>
+        <p>Email: {{ app.user.email }}</p>
+        <p>Biography: {{ app.user.bio }}</p>
+        <a href="{{ path('app_index') }}"><button class="btn btn-primary">Return</button></a>
+    </div>
+{% endblock %}

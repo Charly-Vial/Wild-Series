@@ -4,6 +4,10 @@
 
 {% block body %}
     <h1>Toutes les séries de la table program : </h1>
+    {{ form_start(form) }}
+    {{ form_row(form.search, { 'label': 'recherchez une série via son titre ou le nom de famille d\'un acteur' }) }}
+    <button class="btn btn-success">Recherche</button>
+    {{ form_end(form) }}
     {% for program in programs %}
         <div>
             <h2>{{ program.id }} / <a href="{{ path("program_show", { programSlug: program.slug }) }}">{{ program.title }}</a> - Catégorie : {{ program.category.name }}</h2>
